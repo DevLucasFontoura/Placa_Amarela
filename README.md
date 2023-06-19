@@ -12,11 +12,11 @@ O script possui as seguintes etapas:
 
 03 - Cadastro na BIN: Após a fase de consulta, o script realiza o cadastro do veículo na BIN. Um novo comando é digitado, direcionando para a tela de cadastro, onde a maioria das informações presentes no Checklist (PDF) são utilizadas.
 
-04 - Confirmação e justificativa do cadastro: Após o preenchimento dos dados de cadastro, é realizada a confirmação do mesmo. Além disso, é possível adicionar uma justificativa relacionada ao cadastro.
+04 - Confirmação e justificativa do cadastro: Após o preenchimento dos dados de cadastro, é realizada a confirmação do mesmo. Logo em seguida, é adicionada uma justificativa relacionada ao cadastro.
 
 05 - Verificação do cadastro e anexo de telas: Após a conclusão do cadastro, é realizada uma última consulta para verificar se o veículo foi cadastrado corretamente. Todas as telas capturadas durante o processo são anexadas para registro.
 
-Com a implementação do Placa Amarela, o processo de cadastramento de veículos na BIN se torna mais eficiente e automatizado, agilizando o atendimento à alta demanda existente.
+Com a implementação do Script de Placa Amarela, o processo de cadastramento de veículos na BIN se torna mais eficiente e automatizado, agilizando o atendimento à alta demanda existente.
 
 A imagem abaixo ilustra o processo completo no terminal do VSCode. Por questões de privacidade, algumas informações pessoais foram censuradas.
 

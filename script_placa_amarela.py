@@ -1,11 +1,3 @@
-#get_ipython().system('pip install opencv-python ')
-#get_ipython().system('pip install pytesseract')
-#get_ipython().system('pip install pyautogui')
-#get_ipython().system('pip install pygetwindow')
-
-
-#------------------------------------------------------------------------------------------------------------------------------
-
 from time import sleep
 from datetime import datetime
 from tabula import read_pdf
@@ -60,8 +52,6 @@ PASSO12 = '12 - TELA 911 PREENCHIDA'
 PASSO13 = '13 - TELA 911 COLETATA'
 PASSO14 = '14 - DADOS PREENCHIDOS COM SUCESSO'
 
-
-
 #------------------------------------------------------------------------------------------------------------------------------
 
 def salvarTela(caminho_arquivo):
@@ -88,7 +78,7 @@ def aguardarJanelaAtiva(janela, timer=0):
         i += 1
         if timer != 0 and i == timer:
             break
-
+            
 def redimensionarImagem(largura: int, altura: int, taxa=0.15) -> tuple:
     largura +=  (largura * taxa)
     altura += (altura * taxa)
@@ -139,9 +129,6 @@ def formatarCondicaoVIN(condicao):
 
 def formatarProcedencia(procedencia):
     return procedencia.split()[0][0]
-        
-# def formatarMontagem(montagem):
-#     return montagem[1]
 
 def formatarTipoFaturado(faturado):
     return faturado.split()[0][0]
@@ -199,9 +186,7 @@ def formatarCapacidadeDeCarga(carga):
     else:
         return carga[:3] + ',' + carga[3] + '0'  
 
-
 #------------------------------------------------------------------------------------------------------------------------------
-# PRIMEIRA PARTE - ABRIR HOD
 
 def executarHOD():
     pyautogui.press('winleft')
@@ -239,8 +224,6 @@ def executarHOD():
         raise Exception(ex)
 
 #------------------------------------------------------------------------------------------------------------------------------
-# SEGUNDA PARTE - LER ARQUIVO PDF
-
 
 def lerArquivoPDF(arquivo):
     tables = read_pdf(PASTA_ARQUIVOS_CHECKLIST + arquivo, pages="all", lattice=True, encoding='ISO 8859-1')
@@ -273,9 +256,7 @@ def preencherTelas(checklist):
             tela110.append(str(valor).strip())
     print ([list((i, tela110[i])) for i in range(len(tela110))])
           
-
 #------------------------------------------------------------------------------------------------------------------------------
-# TERCEIRA PARTE - FAZER AS CONSULTAS DAS TELAS 901 / 903 / 911
        
 def consultaDeTelasNoHOD():
     sleep(5)
@@ -287,10 +268,10 @@ def consultaDeTelasNoHOD():
     sleep(1)
     pyautogui.press("enter")
     sleep(2)
-    pyautogui.click(x=618, y=66) # salvar tela
+    pyautogui.click(x=618, y=66) 
     print(PASSO09)
     sleep(1)
-    pyautogui.click(x=744, y=870) # clicar "entre com o comando"
+    pyautogui.click(x=744, y=870) 
     sleep(1)
     pyautogui.press("delete", presses=3)
     sleep(1)
@@ -332,7 +313,6 @@ def consultaDeTelasNoHOD():
     sleep(2)
 
 #------------------------------------------------------------------------------------------------------------------------------
-# QUARTA PARTE - CADASTRAR VEÍCULO 
 
 def cadastrarChassiNoHOD():
     sleep(1)
@@ -346,7 +326,6 @@ def cadastrarChassiNoHOD():
     sleep(1)
     pyautogui.press("enter")
     sleep(1)
-    # PODE TER 02 OPÇÕES AQUI (INCLUSAO E ALTERACAO)
     pyautogui.press("I")
     sleep(1)
     pyautogui.write(tela901[0])
@@ -361,14 +340,12 @@ def cadastrarChassiNoHOD():
     sleep(1)
     pyautogui.write(tela110[13])
     sleep(1)
-    # MUDOU O CHECKLIST AGORA É 'O' E TEM Q COLOCAR PARA CONTINUAR ESCREVENDO 'N'.
     pyautogui.write(formatarCondicaoVIN(tela110[14]))
     sleep(1)
     pyautogui.write(formatarProcedencia(tela110[15]))
     sleep(1)
     pyautogui.press("tab")
     sleep(1)
-    # MUDOU O LAYOUT DO CHECKLIST E AGORA É SEMPRE 01
     pyautogui.write('1')
     sleep(1)
     pyautogui.press("tab", presses=2)
@@ -415,7 +392,6 @@ def cadastrarChassiNoHOD():
     print(PASSO14)
 
 #------------------------------------------------------------------------------------------------------------------------------
-# QUINTA PARTE - SALVAR AS TELAS EM FORMATO PDF
 
 def salvarTelasColetadas():
     print('-- SALVANDO TELAS COLETADAS --')
@@ -448,18 +424,15 @@ def salvarTelasColetadas():
     sleep(5)
     pyautogui.click(x=688, y=735)
     sleep(5)
-    # ESCREVER O NOME DO ARQUIVO = NUMERO DO PROCESSO
-    print()
 
 #------------------------------------------------------------------------------------------------------------------------------
-# SEXTA PARTE - JUSTIFICATIVA DO CADASTRO
 
 def justificarCadastroVINInvalido():
     print('-- JUSTIFICANDO CADASTRO --')
     sleep(2)
     pyautogui.press('F12')
     sleep(2)
-    pyautogui.write('Placa Amarela - ${ARQUIVO}') # + número do processo.
+    pyautogui.write('Placa Amarela - ${ARQUIVO}') 
     sleep(2)
     pyautogui.press('enter')
     sleep(2)
@@ -474,7 +447,6 @@ def justificarCadastroVINInvalido():
     print()
 
 #------------------------------------------------------------------------------------------------------------------------------
-# SÉTIMA PARTE - ESCREVER NOME DO ARQUIVO PDF = NÚMERO DO PROCESSO
 
 def escreverArquivoFinal():
     arquivos_leitura = os.listdir(PASTA_ARQUIVOS_CHECKLIST)
@@ -482,71 +454,14 @@ def escreverArquivoFinal():
     arquivos = list(arquivos_leitura - arquivos_processados)
 
 #------------------------------------------------------------------------------------------------------------------------------
-# OITAVA PARTE - ESCREVER EMAIL DE RESPOSTA PARA DETRAN
-
-def escreverEmail():
-    sleep(2)
-    pyautogui.click(x=114, y=333)
-    pyautogui.write('Pre-cadastro veículo placa ' + tela110[1] + ' - Processo ' + tela110[0] + ' - CONCLUIDO')
-    pyautogui.click(x=71, y=431)
-    pyautogui.write('Prezados,')
-    pyautogui.press('enter', presses=2)
-    pyautogui.write('em atencao ao processo em epigrafe, o qual solicita o pre-cadastro do veículo duas alfas placa ' + tela110[1] + ' , chassi ')
-    pyautogui.press('enter')
-    pyautogui.write( tela110[9] + ' , informamos a conclusao do mesmo estando o veiculo pre-cadastrado e pronto para o emplacamento')
-    pyautogui.press('enter')
-    pyautogui.write('conforme extrato em anexo.')
-    pyautogui.press('enter', presses=2)
-    pyautogui.write('Atenciosamente,')
-    pyautogui.press('enter', presses=2)
-    pyautogui.write('Coordenacao-Geral de Sistemas, Informacao e Estatistica - CGSIE')
-    pyautogui.press('enter')
-    pyautogui.write('Departamento de Gestao da Politica de Transito - DGPT')
-    pyautogui.press('enter')
-    pyautogui.write('Secretaria Nacional de Transito - SENATRAN')
-    pyautogui.press('enter')
-    pyautogui.write('Ministerio da Infraestrutura - MINFRA')
-
-#------------------------------------------------------------------------------------------------------------------------------
-
-def pesquisarPlacaEmTodosOsEstados():
-
-    estados = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
-
-    print("-- CONSULTA PLACA EM TODOS OS ESTADOS --")
-
-    for estado in estados:
-        pyautogui.write("912")
-        sleep(2)
-        pyautogui.press("enter")
-        sleep(2)
-        pyautogui.write(estado)
-        sleep(2)
-        pyautogui.write("AJ9562")
-        sleep(2)
-        pyautogui.press("enter")
-        sleep(10)
-        pyautogui.click(x=618, y=66)
-        sleep(2)
-        pyautogui.click(x=746, y=876)
-
-
-    
-
-
-
-
-#------------------------------------------------------------------------------------------------------------------------------
 
 def main():
     sleep(5)
     print(PASSO00 + getDataAtual())
 
-    # pesquisarPlacaEmTodosOsEstados()
-
-    # print(PASSO01)
-    # executarHOD()
-    # print(PASSO05)
+    print(PASSO01)
+    executarHOD()
+    print(PASSO05)
     
     
     ARQUIVO = os.listdir(PASTA_ARQUIVOS_CHECKLIST)
@@ -561,11 +476,9 @@ def main():
     consultaDeTelasNoHOD()
     cadastrarChassiNoHOD()
 
-    # escreverEmail()
-
-    # justificarCadastroVINInvalido(ARQUIVO)
-    # escreverArquivoFinal()
-    # salvarTelasColetadas()
+    justificarCadastroVINInvalido(ARQUIVO)
+    escreverArquivoFinal()
+    salvarTelasColetadas()
 
     print('SCRIPT FINALIZADO: ' + getDataAtual())
 

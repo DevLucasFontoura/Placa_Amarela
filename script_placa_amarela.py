@@ -95,7 +95,6 @@ def limparTexto(texto):
     return texto
 
 def lerImagemHOD(caminho_imagem: str):
-    # extrairInformacoesVisionAPI(caminho_imagem)
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     imagem = cv2.imread(caminho_imagem)
     dim = redimensionarImagem(imagem.shape[1], imagem.shape[0], taxa=1)
@@ -227,8 +226,6 @@ def executarHOD():
 
 def lerArquivoPDF(arquivo):
     tables = read_pdf(PASTA_ARQUIVOS_CHECKLIST + arquivo, pages="all", lattice=True, encoding='ISO 8859-1')
-    #df = pd.concat(tables[0], tables[1])
-    #df = tables[0].drop(["Unnamed: 1", "Unnamed: 0", "Unnamed: 2"], axis=1)
     df = tables[0][["Item", "Análise"]]
     print(PASSO06)
     return df

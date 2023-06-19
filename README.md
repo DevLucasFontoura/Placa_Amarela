@@ -1,4 +1,4 @@
-# Placa_Amarela - Script de Cadastramento de Veículos na BIN.
+# Placa Amarela - Script de Cadastramento de Veículos na BIN.
 
 O Placa Amarela é um script desenvolvido para otimizar o processo de cadastramento de veículos na BIN, devido à alta demanda existente.
 

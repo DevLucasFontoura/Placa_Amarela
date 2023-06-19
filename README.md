@@ -18,5 +18,8 @@ O script possui as seguintes etapas:
 
 Com a implementação do Placa Amarela, o processo de cadastramento de veículos na BIN se torna mais eficiente e automatizado, agilizando o atendimento à alta demanda existente.
 
+A imagem abaixo ilustra o processo completo no terminal do VSCode. Por questões de privacidade, algumas informações pessoais foram censuradas.
+
+![resumo_placa_amarela2](https://github.com/DevLucasFontoura/Placa_Amarela/assets/129316526/1250a71d-c954-42cd-a2e0-aeb2bee6f922)
 
 

@@ -8,7 +8,7 @@ O script possui as seguintes etapas:
 
 01 - Leitura do Checklist em formato PDF: O script é capaz de ler um arquivo PDF contendo todas as informações necessárias para o cadastramento do veículo. Essas informações são armazenadas em uma lista para posterior utilização.
 
-02 - Consulta de informações: Após a leitura do PDF, o script realiza três tipos de consultas: Consulta do Chassi, Consulta do Motor e Consulta do Chassi na Base Estadual. Cada consulta gera uma imagem que é salva como registro do processo.
+02 - Consulta de informações: Após a leitura do PDF, o script realiza três tipos de consultas: Consulta do Chassi, Consulta do Motor e Consulta do Chassi na Base Estadual. Cada consulta gera uma imagem que é salva para ser anexada ao final do processo.
 
 03 - Cadastro na BIN: Após a fase de consulta, o script realiza o cadastro do veículo na BIN. Um novo comando é digitado, direcionando para a tela de cadastro, onde a maioria das informações presentes no Checklist (PDF) são utilizadas.
 

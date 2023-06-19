@@ -17,3 +17,6 @@ O script possui as seguintes etapas:
 05 - Verificação do cadastro e anexo de telas: Após a conclusão do cadastro, é realizada uma última consulta para verificar se o veículo foi cadastrado corretamente. Todas as telas capturadas durante o processo são anexadas para registro.
 
 Com a implementação do Placa Amarela, o processo de cadastramento de veículos na BIN se torna mais eficiente e automatizado, agilizando o atendimento à alta demanda existente.
+
+
+
